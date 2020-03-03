@@ -15,6 +15,7 @@ function handleSubmit(event) {
   const currentValue = input.value;
   paintGreeting(currentValue);
   saveName(currentValue);
+  //input 값을 계속 저장
 }
 
 function saveName(text) {
@@ -29,7 +30,7 @@ function askForName() {
 function paintGreeting(text) {
   form.classList.remove(SHOWING_CN);
   greeting.classList.add(SHOWING_CN);
-  greeting.innerText = `Hello ${text}`;
+  greeting.innerText = `Hello~!! ${text} Nice to meet you`;
 }
 
 //LS getItem
