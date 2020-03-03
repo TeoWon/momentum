@@ -5,7 +5,22 @@ const toDoForm = document.querySelector(".js-toDoForm"),
 const TODOS_LS = "toDos";
 
 //array가 생성되도록
-const toDos = [];
+let toDos = [];
+
+function deleteToDo(event) {
+  const btn = event.target;
+  const li = btn.parentNode;
+  toDoList.removeChild(li);
+  //filter mean = forEach에서 Fn을 실행하는 것 같이
+  //각각의 item과 같이 실행
+  const cleanToDos = toDos.filter(function(toDo) {
+    //li.id가 string이여서 number로 변경이 필요
+    //parseInt = string을 number로 change
+    return toDo.id !== parseInt(li.id);
+  });
+  toDos = cleanToDos;
+  saveToDos();
+}
 
 //localstorage save
 //JSON.stringify is all javascript ohject change to string
@@ -20,6 +35,7 @@ function paintToDo(text) {
   const span = document.createElement("span");
   const newId = toDos.length + 1; //li에도 id부여
   delBtn.innerText = "❌";
+  delBtn.addEventListener("click", deleteToDo);
   span.innerText = text;
   li.appendChild(span);
   li.appendChild(delBtn);
